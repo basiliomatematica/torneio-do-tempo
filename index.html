@@ -1276,6 +1276,204 @@
 @media(max-width:760px) and (orientation:portrait){.class-picker-wrap{margin-bottom:7px}.form select{padding:8px 10px;font-size:.82rem}}
 @media(orientation:landscape) and (max-height:560px){.class-picker-wrap{margin-bottom:4px}.form select{padding:6px 9px;font-size:.72rem}}
 </style>
+
+<style id="stable-upgrades-20260925">
+.names-data-store{display:none!important}
+.competitor-editor{border:1px solid var(--line);border-radius:15px;background:#071321;padding:10px}
+.competitor-cards{display:flex;flex-wrap:wrap;gap:7px;max-height:145px;overflow:auto;align-content:flex-start}
+.competitor-cards:empty::before{content:"Nenhum competidor adicionado";color:var(--muted);font-size:.82rem;padding:7px}
+.competitor-chip{display:inline-flex;align-items:center;gap:7px;max-width:100%;padding:7px 8px 7px 11px;border:1px solid #294866;border-radius:999px;background:#10253a;font-weight:800;font-size:.82rem}
+.competitor-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.competitor-chip button{width:24px;height:24px;border:0;border-radius:50%;background:#3a1420;color:#fecdd3;font-weight:950;cursor:pointer;line-height:1}
+.competitor-chip button:hover{background:#6b1830}
+.competitor-add-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:9px}
+.competitor-add-row textarea{height:48px!important;min-height:48px!important;resize:none!important;padding:10px 12px!important}
+.competitor-add-row .btn{padding:8px 13px;border-radius:12px}
+.next-action-zone{margin-top:10px;display:flex;justify-content:flex-end}
+.next-action-zone[hidden]{display:none!important}
+.next-player-btn{min-height:48px;padding:10px 20px;border-color:var(--yellow);color:#fff3bf;background:#302713}
+.action-zone:has(.play-btn[hidden]){display:none}
+.sprint-live-cards{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:14px;padding:14px 0 8px}
+.sprint-live-cards[hidden]{display:none!important}
+.sprint-live{min-width:0;min-height:120px;padding:17px 18px;border:1px solid var(--line);border-radius:20px;background:#091725;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.sprint-live small{font-size:.72rem;letter-spacing:.13em;font-weight:950;color:var(--muted)}
+.sprint-live strong{display:block;margin:8px 0 5px;font-size:clamp(1.45rem,2.6vw,2.7rem);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sprint-live span{font-size:.85rem;color:var(--muted);font-weight:800}
+.sprint-live.current{border:2px solid var(--yellow);background:linear-gradient(145deg,rgba(251,191,36,.13),#091725);box-shadow:0 0 0 4px rgba(251,191,36,.06)}
+.sprint-live.current strong{color:var(--yellow)}
+.sprint-live.leader{border-color:rgba(45,212,191,.65)} .sprint-live.leader strong{color:var(--cyan)}
+#arenaScreen.sprint-view .scoreboard{display:none!important}
+#arenaScreen.sprint-view .player{display:none}
+#arenaScreen.sprint-view .status{margin-top:2px}
+.special-fx{position:fixed;inset:0;z-index:60;pointer-events:none;display:grid;place-items:center;overflow:hidden}
+.fx-67{font-size:clamp(5rem,20vw,13rem);font-weight:1000;color:#fbbf24;text-shadow:0 8px 40px #000;animation:fx67pop 1.25s ease both}
+@keyframes fx67pop{0%{opacity:0;transform:scale(.4) rotate(-10deg)}20%{opacity:1;transform:scale(1.12) rotate(8deg)}45%{transform:scale(1) rotate(-7deg)}70%{transform:rotate(5deg)}100%{opacity:0;transform:scale(.9) rotate(0)}}
+.arena.fx-seesaw{animation:seesaw67 .95s ease-in-out}
+@keyframes seesaw67{0%,100%{transform:rotate(0)}18%{transform:rotate(-1.8deg)}38%{transform:rotate(1.8deg)}58%{transform:rotate(-1.25deg)}78%{transform:rotate(1deg)}}
+.exact-flash{position:absolute;width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 0 35px 18px #fbbf24;animation:exactBoom .9s ease-out forwards}
+.exact-ray{position:absolute;width:12px;height:110px;border-radius:10px;background:linear-gradient(#fff,#fbbf24,transparent);transform-origin:50% 100%;animation:exactRay .9s ease-out forwards}
+.exact-word{position:absolute;font-size:clamp(3rem,10vw,7rem);font-weight:1000;color:#fff;text-shadow:0 0 18px #fbbf24,0 5px 25px #000;animation:exactWord 1.25s ease both}
+@keyframes exactBoom{0%{transform:scale(.2);opacity:1}100%{transform:scale(18);opacity:0}}
+@keyframes exactRay{0%{transform:rotate(var(--r)) translateY(0) scaleY(.2);opacity:1}100%{transform:rotate(var(--r)) translateY(-190px) scaleY(1.4);opacity:0}}
+@keyframes exactWord{0%{opacity:0;transform:scale(.3)}25%{opacity:1;transform:scale(1.18)}70%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.9)}}
+@media(min-width:761px){.form .competitor-cards{max-height:min(18vh,145px)}}
+@media(max-width:760px){.competitor-cards{max-height:100px}.competitor-add-row{grid-template-columns:1fr}.sprint-live-cards{grid-template-columns:1fr 1fr}.sprint-live.current{grid-column:1/-1;grid-row:1}.sprint-live{min-height:82px;padding:10px}.sprint-live strong{font-size:1.35rem}.next-action-zone{justify-content:center}.next-player-btn{width:100%}}
+@media(orientation:landscape) and (max-height:560px){.sprint-live-cards{grid-template-columns:1fr 1.15fr 1fr;gap:6px;padding:3px 0}.sprint-live{min-height:58px;padding:6px 8px;border-radius:12px}.sprint-live small{font-size:.5rem}.sprint-live strong{font-size:1rem;margin:3px}.sprint-live span{font-size:.55rem}.competitor-cards{max-height:62px}.competitor-add-row textarea{height:36px!important;min-height:36px!important}}
+</style>
+
+
+<style id="roster-no-layout-shift">
+/* A lista de competidores passa a ocupar SEMPRE o mesmo espaço,
+   vazia ou preenchida. Assim ela não empurra os controles inferiores. */
+.competitor-editor{
+  height:190px!important;
+  min-height:190px!important;
+  max-height:190px!important;
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) 48px!important;
+  gap:8px!important;
+  overflow:hidden!important;
+}
+.competitor-cards{
+  min-height:0!important;
+  height:100%!important;
+  max-height:none!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  padding:2px!important;
+  align-content:start!important;
+}
+.competitor-add-row{
+  margin-top:0!important;
+  min-height:0!important;
+  height:48px!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+}
+.competitor-add-row textarea{
+  height:48px!important;
+  min-height:48px!important;
+  max-height:48px!important;
+  overflow-y:auto!important;
+}
+.competitor-add-row .btn{
+  height:48px!important;
+  min-height:48px!important;
+  white-space:nowrap!important;
+}
+@media(min-width:761px){
+  .form .competitor-cards{max-height:none!important}
+}
+@media(orientation:landscape) and (min-width:761px){
+  .competitor-editor{
+    height:168px!important;
+    min-height:168px!important;
+    max-height:168px!important;
+    grid-template-rows:minmax(0,1fr) 44px!important;
+  }
+  .competitor-add-row,
+  .competitor-add-row textarea,
+  .competitor-add-row .btn{
+    height:44px!important;
+    min-height:44px!important;
+    max-height:44px!important;
+  }
+}
+@media(orientation:landscape) and (max-height:760px){
+  .competitor-editor{
+    height:132px!important;
+    min-height:132px!important;
+    max-height:132px!important;
+    grid-template-rows:minmax(0,1fr) 38px!important;
+  }
+  .competitor-add-row,
+  .competitor-add-row textarea,
+  .competitor-add-row .btn{
+    height:38px!important;
+    min-height:38px!important;
+    max-height:38px!important;
+  }
+  .competitor-chip{padding:4px 6px 4px 9px!important;font-size:.72rem!important}
+  .competitor-chip button{width:20px!important;height:20px!important}
+}
+</style>
+
+
+<style id="next-player-safe-zone">
+/* Zona de segurança: o avanço nunca ocupa nem encosta na área horizontal
+   usada para COMEÇAR/PARAR o cronômetro. */
+#arenaScreen .arena{
+  position:relative;
+}
+#arenaScreen .next-action-zone{
+  position:absolute!important;
+  left:18px!important;
+  bottom:18px!important;
+  width:clamp(190px,18vw,260px)!important;
+  margin:0!important;
+  justify-content:flex-start!important;
+  z-index:8!important;
+}
+#arenaScreen .next-player-btn{
+  width:100%!important;
+  min-height:58px!important;
+  padding:11px 14px!important;
+  border:2px solid var(--yellow)!important;
+  border-radius:16px!important;
+  background:#302713!important;
+  color:#fff3bf!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.28)!important;
+}
+#arenaScreen .action-zone{
+  display:flex!important;
+  justify-content:center!important;
+}
+#arenaScreen .play-btn{
+  width:min(440px,42vw)!important;
+}
+/* Reserva lateral real: mesmo que o botão central seja largo, ele não invade
+   a coluna do botão de avanço. */
+@media(min-width:900px){
+  #arenaScreen .playfield{
+    padding-left:clamp(275px,22vw,340px)!important;
+    padding-right:clamp(40px,5vw,90px)!important;
+  }
+  #arenaScreen .play-inner{
+    width:min(680px,100%)!important;
+  }
+}
+/* Em telas estreitas, em vez de sobrepor, o próximo fica no canto inferior
+   esquerdo e o cronômetro central fica deliberadamente mais estreito. */
+@media(max-width:899px){
+  #arenaScreen .next-action-zone{
+    left:10px!important;
+    bottom:10px!important;
+    width:min(210px,42vw)!important;
+  }
+  #arenaScreen .next-player-btn{
+    min-height:52px!important;
+    font-size:.82rem!important;
+  }
+  #arenaScreen .play-btn{
+    width:min(420px,72vw)!important;
+  }
+}
+@media(orientation:landscape) and (max-height:560px){
+  #arenaScreen .next-action-zone{
+    left:8px!important;
+    bottom:7px!important;
+    width:170px!important;
+  }
+  #arenaScreen .next-player-btn{
+    min-height:40px!important;
+    padding:6px 8px!important;
+    font-size:.68rem!important;
+  }
+  #arenaScreen .play-btn{
+    width:min(390px,55vw)!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -1313,12 +1511,16 @@
               <option value="3 EMTI">3 EMTI</option>
             </select>
           </div>
-          <label for="namesInput">Competidores</label>
-          <textarea id="namesInput" placeholder="Ana
-Bruno
-Carlos
-Daniela..." spellcheck="false"></textarea>
-          <div class="helper" id="namesHelper">Escolha uma turma acima ou digite um nome por linha. A lista permanece editável para faltas e inclusões.</div>
+          <label for="nameQuickInput">Competidores</label>
+          <textarea id="namesInput" class="names-data-store" aria-hidden="true" tabindex="-1"></textarea>
+          <div class="competitor-editor">
+            <div class="competitor-cards" id="competitorCards"></div>
+            <div class="competitor-add-row">
+              <textarea id="nameQuickInput" placeholder="Digite ou cole nomes aqui (um por linha)…" spellcheck="false"></textarea>
+              <button class="btn btn-secondary" id="addNamesBtn" type="button">+ Adicionar</button>
+            </div>
+          </div>
+          <div class="helper" id="namesHelper">Escolha uma turma acima ou adicione competidores. Para retirar um faltoso, basta tocar no × do nome.</div>
           <div class="mode-picker">
             <button class="mode-option selected" id="modeTournamentBtn" type="button"><strong>🏆 Torneio</strong><small>Fases, grupos e grande final.</small></button>
             <button class="mode-option" id="modeSprintBtn" type="button"><strong>⚡ Tiro curto</strong><small>Mesmo alvo, duas chances seguidas por competidor.</small></button>
@@ -1348,6 +1550,11 @@ Daniela..." spellcheck="false"></textarea>
       <div class="panel arena">
         <div class="arena-head"><div><div class="round-label" id="stageLabel">Grupo 1</div><h2 id="roundTitle">Rodada 1</h2></div></div>
         <div class="scoreboard" id="scoreboard"></div>
+        <div class="sprint-live-cards" id="sprintLiveCards" hidden>
+          <article class="sprint-live leader"><small>LÍDER ATUAL</small><strong id="sprintLeader">—</strong><span id="sprintLeaderInfo">Ainda sem marca</span></article>
+          <article class="sprint-live current"><small>JOGADOR ATUAL</small><strong id="sprintCurrent">—</strong><span id="sprintCurrentInfo">Tentativa 1 de 2</span></article>
+          <article class="sprint-live next"><small>PRÓXIMO JOGADOR</small><strong id="sprintNext">—</strong><span id="sprintNextInfo">Aguardando</span></article>
+        </div>
         <div class="playfield"><div class="play-inner">
           <div class="status" id="statusText">Prepare-se</div>
           <div class="player" id="currentPlayer">—</div>
@@ -1356,6 +1563,7 @@ Daniela..." spellcheck="false"></textarea>
             <div class="result-box" id="resultBox"><div class="target-caption">Tempo obtido</div><div class="result-time" id="resultTime"></div><div class="result-diff" id="resultDiff"></div></div>
           </div>
           <div class="action-zone"><button class="btn btn-primary play-btn" id="playBtn" type="button">Começar</button></div>
+          <div class="next-action-zone" id="nextActionZone" hidden><button class="btn btn-secondary next-player-btn" id="nextPlayerBtn" type="button">Próximo competidor →</button></div>
         </div></div>
       </div>
     </section>
@@ -1412,11 +1620,12 @@ Daniela..." spellcheck="false"></textarea>
   <div class="panel modal-card" id="modalCard"><div class="trophy" id="modalIcon">🏆</div><div class="eyebrow" id="modalEyebrow">Vencedor do grupo</div><h2 id="modalTitle"></h2><p id="modalText"></p><div class="decision-grid" id="modalDecision"></div><div class="ranking" id="modalRanking"></div><button class="btn btn-primary wide" id="modalBtn" type="button">Continuar</button></div>
 </div>
 <div class="confetti" id="confetti" aria-hidden="true"></div>
+<div class="special-fx" id="specialFx" aria-hidden="true"></div>
 
 <script>
   const $=s=>document.querySelector(s);
   const state={names:[],groups:[],winners:[],groupIndex:0,phase:1,totalPhases:2,match:null,mode:'setup',gameMode:'tournament',round:1,target:0,participants:[],attempts:[],attemptIndex:0,running:false,startAt:0,resolution:null,buttonMode:'start',sprintAttempt:1,sprintResults:{}};
-  const els={setup:$('#setupScreen'),groups:$('#groupsScreen'),arena:$('#arenaScreen'),names:$('#namesInput'),size:$('#groupSize'),phases:$('#phaseCount'),count:$('#nameCount'),error:$('#setupError'),grid:$('#groupsGrid'),summary:$('#groupSummary'),stage:$('#stageLabel'),round:$('#roundTitle'),scores:$('#scoreboard'),status:$('#statusText'),player:$('#currentPlayer'),timesRow:$('#timesRow'),targetCard:$('#targetCard'),target:$('#targetValue'),result:$('#resultBox'),resultTime:$('#resultTime'),resultDiff:$('#resultDiff'),play:$('#playBtn'),modal:$('#modal'),modalCard:$('#modalCard'),modalIcon:$('#modalIcon'),modalEye:$('#modalEyebrow'),modalTitle:$('#modalTitle'),modalText:$('#modalText'),modalDecision:$('#modalDecision'),modalRanking:$('#modalRanking'),modalBtn:$('#modalBtn')};
+  const els={setup:$('#setupScreen'),groups:$('#groupsScreen'),arena:$('#arenaScreen'),names:$('#namesInput'),size:$('#groupSize'),phases:$('#phaseCount'),count:$('#nameCount'),error:$('#setupError'),grid:$('#groupsGrid'),summary:$('#groupSummary'),stage:$('#stageLabel'),round:$('#roundTitle'),scores:$('#scoreboard'),status:$('#statusText'),player:$('#currentPlayer'),timesRow:$('#timesRow'),targetCard:$('#targetCard'),target:$('#targetValue'),result:$('#resultBox'),resultTime:$('#resultTime'),resultDiff:$('#resultDiff'),play:$('#playBtn'),modal:$('#modal'),modalCard:$('#modalCard'),modalIcon:$('#modalIcon'),modalEye:$('#modalEyebrow'),modalTitle:$('#modalTitle'),modalText:$('#modalText'),modalDecision:$('#modalDecision'),modalRanking:$('#modalRanking'),modalBtn:$('#modalBtn'),nextZone:$('#nextActionZone'),nextBtn:$('#nextPlayerBtn'),sprintLive:$('#sprintLiveCards'),sprintLeader:$('#sprintLeader'),sprintLeaderInfo:$('#sprintLeaderInfo'),sprintCurrent:$('#sprintCurrent'),sprintCurrentInfo:$('#sprintCurrentInfo'),sprintNext:$('#sprintNext'),sprintNextInfo:$('#sprintNextInfo')};
   function showScreen(name){[els.setup,els.groups,els.arena].forEach(x=>x.classList.remove('active'));els[name].classList.add('active');scrollTo(0,0)}
   const classPresets={
     '8M1':['Allicia','Ana Julia','Antonella','Bernardo','Cauã','Diego','Evillyn','Francisco','Gabriel','Guilherme','Hélio','João Pedro','Joaquim','José Miguel','João Gabriel','Kauan','Laura','Lavínia','Lorena','Lorrayne','Samuel','Sophia','Ágatha'],
@@ -1430,16 +1639,36 @@ Daniela..." spellcheck="false"></textarea>
   };
   const classPresetEl=$('#classPreset'),namesHelper=$('#namesHelper');
   Object.keys(classPresets).forEach(k=>classPresets[k]=[...classPresets[k]].sort((a,b)=>a.localeCompare(b,'pt-BR',{sensitivity:'base'})));
+  function setRoster(list){
+    const clean=list.map(x=>x.trim()).filter(Boolean);
+    els.names.value=clean.join('\n');
+    renderRosterCards();updateCount();
+  }
+  function renderRosterCards(){
+    const box=$('#competitorCards'),list=parsedNames();
+    box.innerHTML=list.map((name,i)=>`<div class="competitor-chip"><span>${escapeHtml(name)}</span><button type="button" data-remove-name="${i}" aria-label="Remover ${escapeHtml(name)}">×</button></div>`).join('');
+  }
   classPresetEl.addEventListener('change',()=>{
     const turma=classPresetEl.value;
-    if(!turma){namesHelper.textContent='Digite ou cole um nome por linha. A lista permanece totalmente editável.';namesHelper.classList.remove('class-loaded');return}
-    els.names.value=classPresets[turma].join('\n');updateCount();
-    namesHelper.textContent=`${turma} carregada • ${classPresets[turma].length} alunos. Apague faltosos ou acrescente presentes antes de iniciar.`;
+    if(!turma){setRoster([]);namesHelper.textContent='Adicione os competidores abaixo. Você também pode colar vários nomes de uma vez.';namesHelper.classList.remove('class-loaded');return}
+    setRoster(classPresets[turma]);
+    namesHelper.textContent=`${turma} carregada • ${classPresets[turma].length} alunos. Toque no × para retirar os ausentes.`;
     namesHelper.classList.add('class-loaded');
   });
   function parsedNames(){return els.names.value.split(/\r?\n|;/).map(x=>x.trim()).filter(Boolean)}
   function updateCount(){els.count.textContent=parsedNames().length}
-  els.names.addEventListener('input',updateCount);
+  $('#competitorCards').addEventListener('click',e=>{
+    const b=e.target.closest('[data-remove-name]');if(!b)return;
+    const list=parsedNames();list.splice(Number(b.dataset.removeName),1);setRoster(list);
+  });
+  function addQuickNames(){
+    const input=$('#nameQuickInput'),added=input.value.split(/\r?\n|;/).map(x=>x.trim()).filter(Boolean);
+    if(!added.length)return;
+    setRoster([...parsedNames(),...added]);input.value='';input.focus();
+  }
+  $('#addNamesBtn').addEventListener('click',addQuickNames);
+  $('#nameQuickInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();addQuickNames()}});
+  renderRosterCards();updateCount();
   function syncPhaseSetup(){
     const sprint=state.gameMode==='sprint',single=Number(els.phases.value)===1,field=$('#groupSizeField'),phaseField=els.phases.closest('div');
     els.phases.disabled=sprint;els.size.disabled=sprint||single;
@@ -1453,7 +1682,7 @@ Daniela..." spellcheck="false"></textarea>
   function makeGroups(names,size){const mixed=shuffle(names),out=[];for(let i=0;i<mixed.length;i+=size)out.push(mixed.slice(i,i+size));if(out.length>1&&out.at(-1).length===1)out[out.length-2].push(out.pop()[0]);return out}
   function balancedGroups(names,count){const mixed=shuffle(names),out=Array.from({length:count},()=>[]);mixed.forEach((name,i)=>out[i%count].push(name));return out}
   function phaseName(n){return n===state.totalPhases?'Grande final':n===1?'Primeira fase':`${n}ª fase`}
-  function setupTournament(){const names=parsedNames(),size=Number(els.size.value),phases=Number(els.phases.value);els.error.classList.remove('show');if(names.length<2){return setupError('Insira pelo menos dois competidores.')}if(!Number.isInteger(size)||size<2||size>12){return setupError('Escolha de 2 a 12 competidores por grupo.')}if(!Number.isInteger(phases)||phases<1||phases>5){return setupError('Escolha de 1 a 5 fases.')}if(phases>1&&size>names.length){return setupError('O tamanho do grupo não pode superar o número de competidores.')}const normalized=names.map(x=>x.toLocaleLowerCase('pt-BR'));if(new Set(normalized).size!==normalized.length){return setupError('Há nomes repetidos. Diferencie-os antes de sortear.')}if(state.gameMode==='sprint'){state.names=names;state.totalPhases=1;state.phase=1;state.winners=[];state.groupIndex=0;state.groups=[[...names]];renderSprintLobby();showScreen('groups');return}const groups=makeGroups(names,size),needed=2**(phases-1);if(groups.length<needed){return setupError(`Para ${phases} fases, são necessários pelo menos ${needed} grupos iniciais. Reduza o tamanho dos grupos ou o número de fases.`)}state.names=names;state.totalPhases=phases;state.phase=1;state.winners=[];state.groupIndex=0;if(phases===1){state.groups=[[...names]]}else{state.groups=groups}renderGroups();showScreen('groups')}
+  function setupTournament(){const names=parsedNames(),size=Number(els.size.value),phases=Number(els.phases.value);els.error.classList.remove('show');if(names.length<2){return setupError('Insira pelo menos dois competidores.')}if(!Number.isInteger(size)||size<2||size>12){return setupError('Escolha de 2 a 12 competidores por grupo.')}if(!Number.isInteger(phases)||phases<1||phases>5){return setupError('Escolha de 1 a 5 fases.')}if(phases>1&&size>names.length){return setupError('O tamanho do grupo não pode superar o número de competidores.')}const normalized=names.map(x=>x.toLocaleLowerCase('pt-BR'));if(new Set(normalized).size!==normalized.length){return setupError('Há nomes repetidos. Diferencie-os antes de sortear.')}if(state.gameMode==='sprint'){state.names=names;state.totalPhases=1;state.phase=1;state.winners=[];state.groupIndex=0;state.groups=[[...names]];startSprint(names);return}const groups=makeGroups(names,size),needed=2**(phases-1);if(groups.length<needed){return setupError(`Para ${phases} fases, são necessários pelo menos ${needed} grupos iniciais. Reduza o tamanho dos grupos ou o número de fases.`)}state.names=names;state.totalPhases=phases;state.phase=1;state.winners=[];state.groupIndex=0;if(phases===1){state.groups=[[...names]]}else{state.groups=groups}renderGroups();showScreen('groups')}
   function setupError(msg){els.error.textContent=msg;els.error.classList.add('show')}
   function fitGroupStripNames(){document.querySelectorAll('.group-name-strip .group-strip-name').forEach(el=>{el.style.fontSize='';let size=parseFloat(getComputedStyle(el).fontSize),min=11,guard=0;while(el.scrollWidth>el.clientWidth+1&&size>min&&guard<40){size-=1;el.style.fontSize=size+'px';guard++}})}
   function fitFinalistNames(){document.querySelectorAll('.finalist-card .finalist-name').forEach(el=>{el.style.fontSize='';let size=parseFloat(getComputedStyle(el).fontSize),min=12,guard=0;while((el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+2)&&size>min&&guard<40){size-=1;el.style.fontSize=size+'px';guard++}})}
@@ -1575,21 +1804,56 @@ Daniela..." spellcheck="false"></textarea>
   });
 
   $('#drawBtn').addEventListener('click',setupTournament);$('#redrawBtn').addEventListener('click',()=>{if(!(state.phase===1&&state.groupIndex===0&&state.winners.length===0&&state.match===null))return;state.groups=makeGroups(state.names,Number(els.size.value));renderGroups()});$('#startTournamentBtn').addEventListener('click',()=>state.gameMode==='sprint'?startSprint(state.groups[0]):startMatch(state.groups[state.groupIndex],state.phase===state.totalPhases));
-  function startSprint(players){$('#redrawBtn').hidden=true;$('#redrawBtn').disabled=true;state.mode='sprint';state.match={players:[...players],scores:Object.fromEntries(players.map(p=>[p,0])),isFinal:false,winner:null};state.target=newTarget();state.participants=[...players];state.attempts=[];state.attemptIndex=0;state.sprintAttempt=1;state.sprintResults={};state.running=false;state.isTiebreak=false;els.round.textContent='Tiro curto';els.stage.textContent='Mesmo alvo • 2 chances seguidas por competidor';renderScores();prepareSprintAttempt();showScreen('arena')}
-  function prepareSprintAttempt(){const p=state.participants[state.attemptIndex];els.status.textContent=`${p} • tentativa ${state.sprintAttempt} de 2`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';els.play.disabled=false;state.running=false;state.buttonMode='start';renderScores()}
-  function finishSprintAttempt(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;if(!state.sprintResults[p])state.sprintResults[p]=[];state.sprintResults[p].push({player:p,time:elapsed,diff,exact:diff===0,try:state.sprintAttempt});state.attempts=Object.values(state.sprintResults).flat();els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();els.play.className='btn btn-secondary play-btn';els.play.textContent=state.sprintAttempt===1?'Segunda tentativa':state.attemptIndex<state.participants.length-1?'Próximo competidor':'Ver resultado'}
+  function setAdvanceButton(label){
+    state.buttonMode='next';els.play.hidden=true;els.nextBtn.textContent=label;els.nextZone.hidden=false;
+  }
+  function setStartButton(){
+    els.nextZone.hidden=true;els.play.hidden=false;
+  }
+  function updateSprintLive(){
+    if(state.gameMode!=='sprint'||state.mode!=='sprint'){els.sprintLive.hidden=true;els.arena.classList.remove('sprint-view');return}
+    els.sprintLive.hidden=false;els.arena.classList.add('sprint-view');
+    const current=state.participants[state.attemptIndex]||'—',next=state.participants[state.attemptIndex+1]||'—';
+    els.sprintCurrent.textContent=current;
+    els.sprintCurrentInfo.textContent=state.isTiebreak?'Desempate • tentativa única':`Tentativa ${state.sprintAttempt} de 2`;
+    els.sprintNext.textContent=next;els.sprintNextInfo.textContent=next==='—'?'Último competidor':'Prepare-se';
+    const rows=[];
+    for(const [player,tries] of Object.entries(state.sprintResults||{})){
+      if(!tries.length)continue;const best=[...tries].sort((a,b)=>a.diff-b.diff||a.time-b.time)[0];rows.push({player,...best});
+    }
+    if(state.isTiebreak)state.attempts.forEach(a=>rows.push(a));
+    rows.sort((a,b)=>a.diff-b.diff||a.time-b.time);
+    if(rows.length){els.sprintLeader.textContent=rows[0].player;els.sprintLeaderInfo.textContent=`dif. ${fmt(rows[0].diff)} s • ${fmt(rows[0].time)} s`}
+    else{els.sprintLeader.textContent='—';els.sprintLeaderInfo.textContent='Ainda sem marca'}
+  }
+  function specialTimeEffects(elapsed,exact){
+    const fx=$('#specialFx');fx.innerHTML='';
+    if(exact){
+      const flash=document.createElement('i');flash.className='exact-flash';fx.appendChild(flash);
+      for(let i=0;i<18;i++){const r=document.createElement('i');r.className='exact-ray';r.style.setProperty('--r',`${i*20}deg`);fx.appendChild(r)}
+      const word=document.createElement('div');word.className='exact-word';word.textContent='💥 CRAVOU!';fx.appendChild(word);
+      setTimeout(()=>fx.innerHTML='',1450);
+    }else if(Math.round(elapsed*100)%100===67){
+      const word=document.createElement('div');word.className='fx-67';word.textContent='6️⃣7️⃣';fx.appendChild(word);
+      const arena=els.arena.querySelector('.arena');arena.classList.remove('fx-seesaw');void arena.offsetWidth;arena.classList.add('fx-seesaw');
+      setTimeout(()=>{fx.innerHTML='';arena.classList.remove('fx-seesaw')},1350);
+    }
+  }
+  function startSprint(players){els.arena.classList.add('sprint-view');$('#redrawBtn').hidden=true;$('#redrawBtn').disabled=true;state.mode='sprint';state.match={players:[...players],scores:Object.fromEntries(players.map(p=>[p,0])),isFinal:false,winner:null};state.target=newTarget();state.participants=[...players];state.attempts=[];state.attemptIndex=0;state.sprintAttempt=1;state.sprintResults={};state.running=false;state.isTiebreak=false;els.round.textContent='Tiro curto';els.stage.textContent='Mesmo alvo • 2 chances seguidas por competidor';renderScores();prepareSprintAttempt();showScreen('arena')}
+  function prepareSprintAttempt(){setStartButton();const p=state.participants[state.attemptIndex];els.status.textContent=`${p} • tentativa ${state.sprintAttempt} de 2`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';els.play.disabled=false;state.running=false;state.buttonMode='start';renderScores();updateSprintLive()}
+  function finishSprintAttempt(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;if(!state.sprintResults[p])state.sprintResults[p]=[];state.sprintResults[p].push({player:p,time:elapsed,diff,exact:diff===0,try:state.sprintAttempt});state.attempts=Object.values(state.sprintResults).flat();els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();updateSprintLive();specialTimeEffects(elapsed,diff===0);setAdvanceButton(state.sprintAttempt===1?'Segunda tentativa →':state.attemptIndex<state.participants.length-1?'Próximo competidor →':'Ver resultado →')}
   function advanceSprint(){if(state.sprintAttempt===1){state.sprintAttempt=2;prepareSprintAttempt();return}state.sprintAttempt=1;state.attemptIndex++;if(state.attemptIndex<state.participants.length)prepareSprintAttempt();else resolveSprint()}
   function resolveSprint(){const rows=state.match.players.map(p=>{const best=[...(state.sprintResults[p]||[])].sort((a,b)=>a.diff-b.diff||a.time-b.time)[0];return {player:p,...best}}),best=Math.min(...rows.map(x=>x.diff)),leaders=rows.filter(x=>x.diff===best);state.attempts=rows;if(leaders.length===1)return winSprint(leaders[0].player,rows);startSprintTieModal(leaders.map(x=>x.player),rows)}
   function startSprintTieModal(players,rows){openSprintRanking('⚡','Empate no tiro curto','Desempate necessário',`${players.join(' e ')} tiveram a mesma melhor diferença. Cada um terá uma tentativa extra no mesmo alvo.`,'Disputar desempate',()=>startSprintTiebreak(players),rows)}
   function startSprintTiebreak(players){state.participants=[...players];state.attempts=[];state.attemptIndex=0;state.isTiebreak=true;els.round.textContent='Desempate';els.stage.textContent='Tiro curto • mesmo alvo • 1 chance';renderScores();prepareSprintTieAttempt()}
-  function prepareSprintTieAttempt(){const p=state.participants[state.attemptIndex];els.status.textContent=`Desempate • ${state.attemptIndex+1} de ${state.participants.length}`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';state.running=false;state.buttonMode='start';renderScores()}
-  function finishSprintTie(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;state.attempts.push({player:p,time:elapsed,diff,exact:diff===0});els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();els.play.className='btn btn-secondary play-btn';els.play.textContent=state.attemptIndex<state.participants.length-1?'Próximo competidor':'Ver resultado'}
+  function prepareSprintTieAttempt(){setStartButton();const p=state.participants[state.attemptIndex];els.status.textContent=`Desempate • ${state.attemptIndex+1} de ${state.participants.length}`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';state.running=false;state.buttonMode='start';renderScores();updateSprintLive()}
+  function finishSprintTie(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;state.attempts.push({player:p,time:elapsed,diff,exact:diff===0});els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();updateSprintLive();specialTimeEffects(elapsed,diff===0);setAdvanceButton(state.attemptIndex<state.participants.length-1?'Próximo competidor →':'Ver resultado →')}
   function advanceSprintTie(){state.attemptIndex++;if(state.attemptIndex<state.participants.length)prepareSprintTieAttempt();else resolveSprintTie()}
   function resolveSprintTie(){const best=Math.min(...state.attempts.map(a=>a.diff)),leaders=state.attempts.filter(a=>a.diff===best);if(leaders.length===1)return winSprint(leaders[0].player,state.attempts);startSprintTieModal(leaders.map(x=>x.player),state.attempts)}
   function openSprintRanking(icon,eye,title,msg,button,action,rows){els.modalIcon.textContent=icon;els.modalEye.textContent=eye;els.modalTitle.textContent=title;els.modalText.textContent=msg;els.modalCard.classList.remove('final-winner');els.modalDecision.classList.remove('show');els.modalDecision.innerHTML='';const ordered=[...rows].sort((a,b)=>a.diff-b.diff||a.time-b.time);let last=null,place=0;els.modalRanking.innerHTML=`<div class="ranking-title">Melhores marcas • alvo ${fmt(state.target)} s</div>${ordered.map((p,i)=>{if(p.diff!==last)place=i+1;last=p.diff;return `<div class="rank-row ${place===1?'winner':''}"><div class="rank-pos">${place}º</div><div class="rank-name">${escapeHtml(p.player)}</div><div class="rank-score"><strong>${fmt(p.diff)} s</strong><small>diferença • tempo ${fmt(p.time)} s</small></div></div>`}).join('')}`;els.modalRanking.classList.add('show');els.modalBtn.textContent=button;els.modal.classList.add('show');els.modalBtn.onclick=()=>{els.modal.classList.remove('show');action()}}
   function winSprint(winner,rows){state.match.winner=winner;confetti();openSprintRanking('🏆','Vencedor do tiro curto',winner,`${winner} conseguiu a melhor aproximação ao alvo de ${fmt(state.target)} s.`,'Jogar novamente',resetAll,rows);els.modalCard.classList.add('final-winner')}
   function newTarget(){return (Math.floor(Math.random()*600)+1)/100}
-  function startMatch(players,isFinal){$('#redrawBtn').hidden=true;$('#redrawBtn').disabled=true;state.mode=isFinal?'final':'group';state.match={players:[...players],scores:Object.fromEntries(players.map(p=>[p,0])),isFinal,winner:null};state.round=1;startRegulationRound();showScreen('arena')}
+  function startMatch(players,isFinal){els.arena.classList.remove('sprint-view');els.sprintLive.hidden=true;$('#redrawBtn').hidden=true;$('#redrawBtn').disabled=true;state.mode=isFinal?'final':'group';state.match={players:[...players],scores:Object.fromEntries(players.map(p=>[p,0])),isFinal,winner:null};state.round=1;startRegulationRound();showScreen('arena')}
   function startRegulationRound(){state.resolution={kind:'point',regulationRound:state.round};startAttemptRound(state.match.players,`Rodada ${state.round}`)}
   function startAttemptRound(players,title){state.participants=[...players];state.attempts=[];state.attemptIndex=0;state.target=newTarget();state.running=false;state.isTiebreak=title==='Rodada de desempate';els.round.textContent=title;els.stage.textContent=state.match.isFinal?'Grande final':`${phaseName(state.phase)} • Grupo ${state.groupIndex+1}`;renderScores();prepareAttempt()}
   function isEliminatedNow(name){
@@ -1629,10 +1893,18 @@ Daniela..." spellcheck="false"></textarea>
       els.scores.innerHTML=state.match.players.map(n=>{const tries=state.sprintResults[n]||[],best=tries.length?[...tries].sort((a,b)=>a.diff-b.diff)[0]:null,active=state.participants[state.attemptIndex]===n;const details=tries.length?`<div class="score-attempt"><span class="attempt-time">${tries.map((a,i)=>`T${i+1} ${fmt(a.time)} s`).join(' • ')}</span><span class="attempt-diff"><small>melhor dif.</small>${fmt(best.diff)} s</span></div>`:'<div class="score-attempt waiting">aguardando</div>';return `<div class="score ${active?'active':''} ${tries.length>=2?'sprint-done':''}"><div class="score-name">${escapeHtml(n)}</div><div class="score-points">${tries.length}<small>/2 tentativas</small></div>${details}</div>`}).join('');return}
     els.scores.innerHTML=state.match.players.map(n=>{const attempt=state.attempts.find(a=>a.player===n),eliminated=isEliminatedNow(n),inactive=!state.participants.includes(n);return `<div class="score ${inactive?'out':''} ${eliminated?'eliminated':''} ${state.participants[state.attemptIndex]===n&&!eliminated?'active':''}"><div class="score-name">${escapeHtml(n)}</div><div class="score-points">${state.match.scores[n]} <small>${state.match.scores[n]===1?'ponto':'pontos'}</small></div>${attempt?`<div class="score-attempt"><span class="attempt-time">${fmt(attempt.time)} s</span><span class="attempt-diff"><small>dif.</small>${fmt(attempt.diff)} s</span></div>`:'<div class="score-attempt waiting">aguardando</div>'}</div>`}).join('')
   }
-  function prepareAttempt(){const p=state.participants[state.attemptIndex];els.status.textContent=`Tentativa ${state.attemptIndex+1} de ${state.participants.length}`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';els.play.disabled=false;state.running=false;state.buttonMode='start';renderScores()}
+  function prepareAttempt(){setStartButton();const p=state.participants[state.attemptIndex];els.status.textContent=`Tentativa ${state.attemptIndex+1} de ${state.participants.length}`;els.player.textContent=p;els.target.innerHTML=`${fmt(state.target)} <span>s</span>`;els.targetCard.classList.remove('hidden-time');els.timesRow.classList.remove('has-result');els.result.classList.remove('show');els.play.className='btn btn-primary play-btn';els.play.textContent='Começar';els.play.disabled=false;state.running=false;state.buttonMode='start';renderScores()}
   function fmt(n){return Number(n).toFixed(2).replace('.',',')}
   els.play.addEventListener('click',()=>{if(state.gameMode==='sprint'&&state.mode==='sprint'){if(state.buttonMode==='next')return state.isTiebreak?advanceSprintTie():advanceSprint();if(state.buttonMode==='start'){state.running=true;state.buttonMode='stop';state.startAt=performance.now();els.targetCard.classList.add('hidden-time');els.play.className='btn play-btn stop';els.play.textContent='PARAR!';els.status.textContent='Confie na sua percepção…';return}return state.isTiebreak?finishSprintTie():finishSprintAttempt()}if(state.buttonMode==='next')return advanceAfterResult();if(state.buttonMode==='start'){state.running=true;state.buttonMode='stop';state.startAt=performance.now();els.targetCard.classList.add('hidden-time');els.play.className='btn play-btn stop';els.play.textContent='PARAR!';els.status.textContent='Confie na sua percepção…';return}finishAttempt()});
-  function finishAttempt(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;state.attempts.push({player:p,time:elapsed,diff,exact:diff===0});els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();els.play.className='btn btn-secondary play-btn';els.play.textContent=state.attemptIndex<state.participants.length-1?'Próximo competidor':'Ver resultado da rodada';els.play.disabled=false}
+  els.nextBtn.addEventListener('click',()=>{
+    if(state.buttonMode!=='next')return;
+    els.nextBtn.disabled=true;
+    try{
+      if(state.gameMode==='sprint'&&state.mode==='sprint'){state.isTiebreak?advanceSprintTie():advanceSprint()}
+      else advanceAfterResult();
+    }finally{els.nextBtn.disabled=false}
+  });
+  function finishAttempt(){const elapsed=Math.round((performance.now()-state.startAt)/10)/100;state.running=false;state.buttonMode='next';const p=state.participants[state.attemptIndex],diff=Math.round(Math.abs(elapsed-state.target)*100)/100;state.attempts.push({player:p,time:elapsed,diff,exact:diff===0});els.targetCard.classList.remove('hidden-time');els.resultTime.innerHTML=`${fmt(elapsed)} <span class="time-unit">s</span>`;els.resultTime.className=`result-time ${diff===0?'exact':''}`;els.resultDiff.textContent=diff===0?'CRAVOU O TEMPO!':`${fmt(diff)} s de diferença`;els.timesRow.classList.add('has-result');els.result.classList.add('show');renderScores();specialTimeEffects(elapsed,diff===0);setAdvanceButton(state.attemptIndex<state.participants.length-1?'Próximo competidor →':'Ver resultado da rodada →');els.play.disabled=false}
   function advanceAfterResult(){state.attemptIndex++;if(state.attemptIndex<state.participants.length)prepareAttempt();else resolveAttemptRound()}
   function leadersByAttempt(){const best=Math.min(...state.attempts.map(a=>a.diff));return state.attempts.filter(a=>a.diff===best).map(a=>a.player)}
   function resolveAttemptRound(){const best=leadersByAttempt(),exact=state.attempts.filter(a=>a.exact).map(a=>a.player);if(!state.isTiebreak&&exact.length===1){return winMatch(exact[0],`${exact[0]} cravou ${fmt(state.target)} s e venceu a partida!`)}if(!state.isTiebreak&&exact.length>1){state.resolution={kind:'match',reason:'cravaram o mesmo tempo'};return announceTie(exact,'Empate perfeito!',`${exact.join(' e ')} cravaram o tempo. A pontuação anterior deixa de decidir a partida: somente quem cravou disputa o desempate, e o vencedor leva a partida.`)}if(best.length>1){return announceTie(best,'Empate na precisão!',`${best.join(' e ')} ficaram à mesma distância. Eles disputam o ponto em uma rodada extra.`)}awardResolved(best[0])}
@@ -1659,17 +1931,17 @@ Daniela..." spellcheck="false"></textarea>
   function prepareNextPhase(){const classified=[...state.winners];state.phase++;state.groupIndex=0;state.winners=[];if(state.phase===state.totalPhases){state.groups=[classified]}else{state.groups=balancedGroups(classified,Math.floor(classified.length/2))}renderGroups();openModal(state.phase===state.totalPhases?'🏆':'🔀',state.phase===state.totalPhases?'Finalistas definidos':'Classificados redistribuídos',phaseName(state.phase),state.phase===state.totalPhases?`${classified.join(', ')} disputarão o título.`:`${classified.length} classificados foram divididos igualmente em ${state.groups.length} grupos.` ,state.phase===state.totalPhases?'Começar a grande final':`Ver grupos da ${state.phase}ª fase`,()=>showScreen('groups'))}
   function renderTimeRanking(){const ordered=[...state.attempts].sort((a,b)=>a.diff-b.diff||a.time-b.time);let lastDiff=null,lastPlace=0;els.modalRanking.innerHTML=`<div class="ranking-title">Ranking da rodada • alvo ${fmt(state.target)} s</div>${ordered.map((p,i)=>{const place=p.diff===lastDiff?lastPlace:i+1;lastDiff=p.diff;lastPlace=place;return `<div class="rank-row ${place===1?'winner':''}"><div class="rank-pos">${place}º</div><div class="rank-name">${escapeHtml(p.player)}${p.exact?'<span class="rank-note">Cravou o tempo!</span>':''}</div><div class="rank-score"><strong>${fmt(p.diff)} s</strong><small>diferença • tempo ${fmt(p.time)} s</small></div></div>`}).join('')}`;els.modalRanking.classList.add('show')}
   function openModal(icon,eye,title,text,button,action,final=false,showTimeRanking=false){els.modalIcon.textContent=icon;els.modalEye.textContent=eye;els.modalTitle.textContent=title;els.modalText.textContent=text;els.modalBtn.textContent=button;els.modalCard.classList.toggle('final-winner',final);els.modalDecision.classList.remove('show');els.modalDecision.innerHTML='';els.modalRanking.classList.remove('show');els.modalRanking.innerHTML='';if(showTimeRanking&&state.attempts.length)renderTimeRanking();els.modal.classList.add('show');els.modalBtn.onclick=()=>{els.modal.classList.remove('show');action()}}
-  function resetAll(){state.winners=[];state.groupIndex=0;state.phase=1;state.match=null;state.mode='setup';state.sprintResults={};state.isTiebreak=false;els.modalCard.classList.remove('final-winner');syncPhaseSetup();showScreen('setup')}
+  function resetAll(){els.arena.classList.remove('sprint-view');els.sprintLive.hidden=true;els.nextZone.hidden=true;els.play.hidden=false;state.winners=[];state.groupIndex=0;state.phase=1;state.match=null;state.mode='setup';state.sprintResults={};state.isTiebreak=false;els.modalCard.classList.remove('final-winner');syncPhaseSetup();showScreen('setup')}
   function confetti(){const c=$('#confetti'),colors=['#2dd4bf','#fbbf24','#60a5fa','#fb7185','#fff'];c.innerHTML='';for(let i=0;i<70;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.background=colors[i%colors.length];p.style.setProperty('--drift',(Math.random()*240-120)+'px');p.style.animationDelay=Math.random()*.7+'s';p.style.transform=`rotate(${Math.random()*360}deg)`;c.appendChild(p)}setTimeout(()=>c.innerHTML='',3800)}
   $('#fullscreenBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){}});
-  document.addEventListener('keydown',e=>{if(e.code==='Space'&&els.arena.classList.contains('active')&&!els.modal.classList.contains('show')){e.preventDefault();els.play.click()}});
+  document.addEventListener('keydown',e=>{if(e.code==='Space'&&els.arena.classList.contains('active')&&!els.modal.classList.contains('show')){if(!els.play.hidden){e.preventDefault();els.play.click()}}});
   if(document.modelContext?.registerTool){
     const webMcpLife=new AbortController();
     Promise.resolve(document.modelContext.registerTool({
       name:'configure_tournament',title:'Configurar torneio',description:'Configura e sorteia um novo Torneio do Tempo usando uma lista de competidores e o tamanho desejado dos grupos.',
       inputSchema:{type:'object',properties:{names:{type:'array',items:{type:'string',minLength:1},minItems:2},groupSize:{type:'integer',minimum:2,maximum:12},phases:{type:'integer',minimum:2,maximum:5}},required:['names','groupSize'],additionalProperties:false},
       annotations:{readOnlyHint:false,untrustedContentHint:false},
-      execute(input){if(!input||!Array.isArray(input.names)||!Number.isInteger(input.groupSize))throw new Error('Informe names e groupSize válidos.');els.names.value=input.names.join('\n');els.size.value=String(input.groupSize);els.phases.value=String(input.phases||2);updateCount();setupTournament();if(els.error.classList.contains('show'))throw new Error(els.error.textContent||'Não foi possível configurar o torneio.');return{competitors:state.names.length,phases:state.totalPhases,groups:state.groups.map(g=>[...g])}}
+      execute(input){if(!input||!Array.isArray(input.names)||!Number.isInteger(input.groupSize))throw new Error('Informe names e groupSize válidos.');setRoster(input.names);els.size.value=String(input.groupSize);els.phases.value=String(input.phases||2);updateCount();setupTournament();if(els.error.classList.contains('show'))throw new Error(els.error.textContent||'Não foi possível configurar o torneio.');return{competitors:state.names.length,phases:state.totalPhases,groups:state.groups.map(g=>[...g])}}
     },{signal:webMcpLife.signal})).catch(()=>{});
   }
 </script>
