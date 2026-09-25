@@ -1474,6 +1474,77 @@
 }
 </style>
 
+<style id="presentation-remote-control">
+.remote-config{margin:8px 0;border:1px solid var(--line);border-radius:15px;background:#091725;padding:8px 10px}
+.remote-config-main{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.remote-config-copy{min-width:0;display:flex;flex-direction:column;gap:2px}
+.remote-config-copy strong{font-size:.86rem}.remote-config-copy span{font-size:.68rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.remote-config.ready{border-color:rgba(45,212,191,.65)}.remote-config.ready .remote-config-copy span{color:var(--cyan);font-weight:850}
+.remote-config-btn{min-height:34px!important;padding:5px 10px!important;border-radius:10px!important;font-size:.74rem!important}
+.remote-learning{margin-top:7px;padding-top:7px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;color:#dce8f6;font-size:.72rem}
+.remote-learning[hidden]{display:none!important}.remote-learning .btn{min-height:31px!important;padding:4px 8px!important;font-size:.68rem!important}
+.remote-pulse{animation:remotePulse .65s ease}@keyframes remotePulse{45%{box-shadow:0 0 0 5px rgba(45,212,191,.2)}}
+@media(orientation:landscape) and (max-height:760px){.remote-config{margin:5px 0;padding:5px 8px}.remote-config-copy strong{font-size:.72rem}.remote-config-copy span{font-size:.58rem}.remote-config-btn{min-height:29px!important;padding:3px 8px!important}}
+</style>
+
+<style id="remote-minimal-top-left">
+/* Controle de slides: compacto e fora do fluxo do formulário. */
+#setupScreen{position:relative!important}
+#setupScreen .remote-config{
+  position:absolute!important;
+  top:12px!important;
+  left:12px!important;
+  z-index:12!important;
+  width:auto!important;
+  max-width:250px!important;
+  margin:0!important;
+  padding:5px 7px!important;
+  border-radius:11px!important;
+  background:rgba(7,19,33,.88)!important;
+  backdrop-filter:blur(8px);
+  box-shadow:0 5px 16px rgba(0,0,0,.18)!important;
+}
+#setupScreen .remote-config-main{gap:7px!important}
+#setupScreen .remote-config-copy{gap:0!important}
+#setupScreen .remote-config-copy strong{
+  font-size:.68rem!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+}
+#setupScreen .remote-config-copy span{
+  font-size:.53rem!important;
+  line-height:1.1!important;
+  max-width:145px!important;
+}
+#setupScreen .remote-config-btn{
+  min-height:26px!important;
+  height:26px!important;
+  padding:2px 7px!important;
+  border-radius:8px!important;
+  font-size:.59rem!important;
+  white-space:nowrap!important;
+}
+#setupScreen .remote-learning{
+  margin-top:5px!important;
+  padding-top:5px!important;
+  max-width:225px!important;
+  gap:5px!important;
+  font-size:.58rem!important;
+  line-height:1.2!important;
+}
+#setupScreen .remote-learning .btn{
+  min-height:25px!important;
+  padding:2px 6px!important;
+  font-size:.56rem!important;
+}
+/* Como saiu do fluxo, recuperamos integralmente o espaço que ocupava entre
+   as opções e o botão Tutorial. */
+@media(max-width:760px){
+  #setupScreen .remote-config{top:7px!important;left:7px!important;max-width:215px!important}
+  #setupScreen .remote-config-copy span{max-width:120px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -1531,7 +1602,17 @@
             <div class="count-box"><small>Competidores identificados</small><strong id="nameCount">0</strong></div>
           </div>
           <div class="setup-actions">
-            <button class="btn btn-secondary wide" id="trainingBtn" type="button">🎯 Tutorial / treino</button>
+            <div class="remote-config" id="remoteConfig">
+  <div class="remote-config-main">
+    <div class="remote-config-copy"><strong>🎮 Controle de slides</strong><span id="remoteStatus">Nenhum botão configurado</span></div>
+    <button class="btn btn-secondary remote-config-btn" id="configureRemoteBtn" type="button">Configurar</button>
+  </div>
+  <div class="remote-learning" id="remoteLearning" hidden>
+    <span>Pressione agora o botão físico que deseja usar para <b>INICIAR / PARAR</b>.</span>
+    <button class="btn btn-secondary" id="cancelRemoteBtn" type="button">Cancelar</button>
+  </div>
+</div>
+<button class="btn btn-secondary wide" id="trainingBtn" type="button">🎯 Tutorial / treino</button>
             <button class="btn btn-primary wide" id="drawBtn" type="button">Sortear os grupos</button>
           </div>
         </div>
@@ -1944,6 +2025,36 @@
       execute(input){if(!input||!Array.isArray(input.names)||!Number.isInteger(input.groupSize))throw new Error('Informe names e groupSize válidos.');setRoster(input.names);els.size.value=String(input.groupSize);els.phases.value=String(input.phases||2);updateCount();setupTournament();if(els.error.classList.contains('show'))throw new Error(els.error.textContent||'Não foi possível configurar o torneio.');return{competitors:state.names.length,phases:state.totalPhases,groups:state.groups.map(g=>[...g])}}
     },{signal:webMcpLife.signal})).catch(()=>{});
   }
+
+
+  // Controle de slides: aprende um botão físico e o usa SOMENTE no cronômetro.
+  const remoteControl={learning:false,binding:null};
+  const remoteBox=$('#remoteConfig'),remoteStatus=$('#remoteStatus'),remoteLearning=$('#remoteLearning'),
+        configureRemoteBtn=$('#configureRemoteBtn'),cancelRemoteBtn=$('#cancelRemoteBtn');
+  function remoteKeyLabel(o){const labels={PageDown:'Page Down',PageUp:'Page Up',ArrowRight:'Seta →',ArrowLeft:'Seta ←',ArrowUp:'Seta ↑',ArrowDown:'Seta ↓',Space:'Espaço',Enter:'Enter',MediaTrackNext:'Próxima mídia',MediaTrackPrevious:'Mídia anterior',MediaPlayPause:'Play/Pause'};return labels[o.code]||labels[o.key]||o.key||o.code||'Botão detectado'}
+  function sameRemoteKey(e,b){return !!b&&((b.code&&e.code===b.code)||(b.key&&e.key===b.key))}
+  function showRemoteBinding(b){remoteStatus.textContent=`Ativo: ${b.label}`;configureRemoteBtn.textContent='Trocar botão';remoteBox.classList.add('ready')}
+  function saveRemoteBinding(b){remoteControl.binding=b;try{localStorage.setItem('torneioTempoRemote',JSON.stringify(b))}catch(_){}showRemoteBinding(b)}
+  function loadRemoteBinding(){try{const b=JSON.parse(localStorage.getItem('torneioTempoRemote')||'null');if(b&&typeof b==='object'){remoteControl.binding=b;showRemoteBinding(b)}}catch(_){}}
+  configureRemoteBtn.addEventListener('click',()=>{remoteControl.learning=true;remoteLearning.hidden=false;remoteStatus.textContent='Aguardando o botão físico…';configureRemoteBtn.disabled=true});
+  cancelRemoteBtn.addEventListener('click',()=>{remoteControl.learning=false;remoteLearning.hidden=true;configureRemoteBtn.disabled=false;remoteControl.binding?showRemoteBinding(remoteControl.binding):(remoteStatus.textContent='Nenhum botão configurado')});
+  window.addEventListener('keydown',e=>{
+    if(remoteControl.learning){
+      e.preventDefault();e.stopImmediatePropagation();
+      saveRemoteBinding({key:e.key,code:e.code,label:remoteKeyLabel(e)});
+      remoteControl.learning=false;remoteLearning.hidden=true;configureRemoteBtn.disabled=false;
+      remoteBox.classList.remove('remote-pulse');void remoteBox.offsetWidth;remoteBox.classList.add('remote-pulse');return;
+    }
+    if(!sameRemoteKey(e,remoteControl.binding)||e.repeat)return;
+    const active=document.activeElement,tag=(active?.tagName||'').toLowerCase();
+    if(tag==='input'||tag==='textarea'||tag==='select'||active?.isContentEditable)return;
+    const arenaActive=$('#arenaScreen')?.classList.contains('active');
+    const timerAvailable=arenaActive&&!els.play.hidden&&!els.play.disabled&&(state.buttonMode==='start'||state.buttonMode==='stop');
+    if(timerAvailable){e.preventDefault();e.stopImmediatePropagation();els.play.click()}
+    else if(arenaActive){e.preventDefault();e.stopImmediatePropagation()} // never advances player
+  },true);
+  loadRemoteBinding();
+
 </script>
 
 
